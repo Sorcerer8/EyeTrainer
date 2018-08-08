@@ -19,22 +19,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wda-f9-qXk">
-                                <rect key="frame" x="5" y="25" width="365" height="637"/>
+                                <rect key="frame" x="5" y="70" width="365" height="592"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Jg8-MN-1gC">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <subviews>
+                                    <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqX-av-0aY">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="50"/>
+                                    </pickerView>
+                                    <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR5-2L-wu6">
+                                        <rect key="frame" x="126.5" y="0.0" width="122" height="50"/>
+                                    </pickerView>
+                                    <pickerView tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVE-Tz-qLh">
+                                        <rect key="frame" x="252.5" y="0.0" width="122.5" height="50"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Wda-f9-qXk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="6oZ-lM-wCW"/>
+                            <constraint firstItem="Wda-f9-qXk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="6oZ-lM-wCW"/>
+                            <constraint firstItem="Jg8-MN-1gC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E7K-km-nU2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wda-f9-qXk" secondAttribute="trailing" constant="5" id="NyW-Bg-QcT"/>
+                            <constraint firstItem="Wda-f9-qXk" firstAttribute="top" secondItem="Jg8-MN-1gC" secondAttribute="bottom" id="Tjf-gy-kKT"/>
+                            <constraint firstItem="Jg8-MN-1gC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vng-3O-53c"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jg8-MN-1gC" secondAttribute="trailing" id="XXO-SL-v1m"/>
                             <constraint firstItem="Wda-f9-qXk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="mNg-FU-iwE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wda-f9-qXk" secondAttribute="bottom" constant="5" id="r6U-lI-vW7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="pickersStackView" destination="Jg8-MN-1gC" id="Qll-PT-GDK"/>
                         <outlet property="textLabel" destination="Wda-f9-qXk" id="yMX-Kc-6fh"/>
                     </connections>
                 </viewController>

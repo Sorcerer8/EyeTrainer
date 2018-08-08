@@ -8,13 +8,20 @@
 
 import UIKit
 
-class TrainViewController: UIViewController {
-
+class TrainViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    private enum PickersTags:Int {
+        case minFontValueTag = 1
+        case maxFontValueTag = 2
+        case stepTag = 3
+    }
+    
     private static let minFontSize:CGFloat = 16.0
     private static let maxFontSize:CGFloat = 100.0
     private static let fontStepPerSecond:CGFloat = 22.0
     
     @IBOutlet var textLabel: UILabel!
+    @IBOutlet var pickersStackView: UIStackView!
     
     private var isAnimationUpToDown = true
     private var animationTimer:Timer! = nil
@@ -23,6 +30,12 @@ class TrainViewController: UIViewController {
         super.viewDidLoad()
 
         self.textLabel.font = self.textLabel.font.withSize(type(of: self).maxFontSize)
+        
+        for case let pickerView as UIPickerView in self.pickersStackView.arrangedSubviews {
+            
+            pickerView.dataSource = self
+            pickerView.delegate = self
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +120,53 @@ class TrainViewController: UIViewController {
         else {
             
             self.textLabel.font = self.textLabel.font.withSize(self.textLabel.font.pointSize + 1)
+        }
+    }
+    
+    //MARK: UIPickerViewDataSource
+    
+    private static let minFontValues:[Int] = Array<Int>(6...24)
+    private static let maxFontValues:[Int] = Array<Int>(90...140)
+    private static let stepPerSeconsValues:[Int] = Array<Int>(16...44)
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        switch pickerView.tag {
+            
+        case PickersTags.minFontValueTag.rawValue:
+            return TrainViewController.minFontValues.count
+            
+        case PickersTags.maxFontValueTag.rawValue:
+            return TrainViewController.maxFontValues.count
+            
+        case PickersTags.stepTag.rawValue:
+            return TrainViewController.stepPerSeconsValues.count
+            
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        switch pickerView.tag {
+            
+        case PickersTags.minFontValueTag.rawValue:
+            return "min " + String(TrainViewController.minFontValues[row])
+            
+        case PickersTags.maxFontValueTag.rawValue:
+            return "max " + String(TrainViewController.maxFontValues[row])
+            
+        case PickersTags.stepTag.rawValue:
+            return "step " + String(TrainViewController.stepPerSeconsValues[row])
+            
+        default:
+            return ""
         }
     }
 }
